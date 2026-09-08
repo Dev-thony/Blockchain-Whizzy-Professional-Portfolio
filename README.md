@@ -1,18 +1,28 @@
-# Portfolio
+# David Anthony Portfolio
+
+A personal portfolio and frontend developer showcase for David Anthony, designed to present skills, selected projects, professional background, and contact information clearly and professionally.
 
 ## Overview
 
-This project is a clean, responsive portfolio for David Anthony, built with React, TypeScript, and Vite. The site is designed to present a professional frontend developer identity with a strong emphasis on clarity, responsive behavior, and maintainable content architecture.
+This project is a responsive portfolio website built to communicate a strong frontend engineering profile in a clean, modern format. It is structured as a single-page experience that highlights the developer’s experience, design sensibility, and product-focused thinking without relying on a complex backend.
 
-## Features
+The site presents a focused overview of:
 
-- Mobile-first, responsive single-page layout
-- Clean navigation with mobile menu behavior
-- Professional hero, about, skills, projects, journey, resume, and contact sections
-- Centralized portfolio content in a data module
-- Resume link in a production-safe public folder
-- Semantic HTML and accessible, readable interactions
-- Dark theme with careful contrast and modern styling
+- frontend development capabilities
+- design and UX strengths
+- selected work and project highlights
+- career journey and positioning
+- resume access and contact details
+
+## Key Features
+
+- responsive single-page portfolio layout
+- clear hero, about, skills, journey, projects, and contact sections
+- project cards with live links and source links where available
+- downloadable CV and public resume view
+- centralized content model for portfolio data
+- dark themed visual system with accessible contrast
+- static asset organization for images and public documents
 
 ## Technology Stack
 
@@ -21,10 +31,21 @@ This project is a clean, responsive portfolio for David Anthony, built with Reac
 - Vite
 - Tailwind CSS
 - Lucide React
+- HTML and CSS
 
 ## Architecture
 
-The application uses a lightweight structure centered around reusable UI components and a content-first data model. Portfolio content is kept separate from rendering logic so it can be updated without rewriting interface code.
+The application follows a lightweight component-based structure:
+
+Frontend
+↓
+React UI components
+↓
+Content-driven data modules
+↓
+Vite production build
+
+The portfolio content is kept separate from the presentation layer so updates to personal information, skills, and projects can be managed without rewriting interface logic. Public files such as the resume and project images are served from the public directory.
 
 ## Project Structure
 
@@ -39,78 +60,42 @@ src/
   index.css
   main.tsx
 public/
+  images/
   resume/
   favicon.svg
+index.html
+vite.config.ts
+package.json
+README.md
 ```
 
-## Requirements
+## Data and Configuration
 
-- Node.js 18+
-- npm
-
-## Installation
-
-```bash
-npm install
-```
-
-## Running Locally
-
-```bash
-npm run dev
-```
-
-## Development
-
-```bash
-npm run dev
-```
-
-## Production Build
-
-```bash
-npm run build
-```
-
-## Preview
-
-```bash
-npm run preview
-```
-
-## Testing
-
-```bash
-npm run lint
-```
-
-## Resume/CV
-
-The resume is stored in the public folder at:
-
-```text
-public/resume/david-anthony-resume.html
-```
-
-To replace it, update the file in that location and keep the same path in the portfolio data file if needed.
+Portfolio content is organized in the data layer and is intended to be updated through the relevant source files rather than hardcoding values inside the UI. Optional environment placeholders may be added in a local `.env` file when needed for future integrations, but the current portfolio does not require a production secret setup for the public site to work.
 
 ## Deployment
 
-This project is ready for deployment to Vercel using the standard Vite setup. In Vercel, import the repository and keep the default build settings:
+The project is configured for Vercel-style static hosting and is built using Vite. It is suitable for deployment as a frontend-only portfolio with static assets and public resume content.
 
-- Build command: `npm run build`
-- Output directory: `dist`
+## Current Project Status
 
-## Troubleshooting
+This portfolio is a functional personal website and portfolio MVP. It is polished and presentation-ready for a professional public GitHub repository, but it remains a static portfolio implementation rather than a full application platform or e-commerce/payment system.
 
-- If the site does not render correctly, ensure dependencies are installed with `npm install`.
-- If the resume page does not load, confirm the file exists in `public/resume`.
-- If the mobile menu behaves incorrectly, check the header component and the `aria-expanded` state.
+## Known Limitations
 
-## Contributing
+- the site is primarily informational and static
+- there are no automated end-to-end tests in the current repository
+- project data is manually maintained in the source files
+- advanced backend or user-authenticated workflows are not part of the current implementation
 
-Contributions are welcome for content accuracy and UI polish. Please keep changes focused, accessible, and consistent with the portfolio's minimal visual direction.
+## Future Improvements
 
-## License
+- richer case studies for more completed work
+- CMS-driven project entries
+- automated UI testing
+- stronger analytics and engagement tracking
+- additional resume or portfolio sections for specialized work
 
-This project does not currently include a license file.
+## Author
+
+David Anthony
