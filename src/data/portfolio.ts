@@ -14,17 +14,6 @@ export type SkillGroup = {
   items: string[];
 };
 
-export type Project = {
-  title: string;
-  description: string;
-  impact: string;
-  stack: string[];
-  featured?: boolean;
-  href?: string;
-  repo?: string;
-  image: string;
-};
-
 export type JourneyItem = {
   period: string;
   title: string;
@@ -33,18 +22,19 @@ export type JourneyItem = {
 };
 
 export const personalInfo = {
-  name: 'David Anthony Chinonyerem',
+  name: 'David Anthony',
   shortName: 'David Anthony',
-  title: 'Frontend Developer • Product-minded builder',
-  headline: 'I design and build thoughtful digital products with clarity, speed, and technical depth.',
+  title: 'Frontend Developer • UI/UX Designer • Blockchain/Web3 Enthusiast',
+  headline: 'I design and build thoughtful digital experiences with clarity, usability, and modern frontend craft.',
   summary:
-    'I work across frontend engineering, interface design, and product thinking to build experiences that are clean, responsive, and easy to trust. My focus is creating software that feels polished, performs well, and solves real user problems.',
+    'I am a frontend developer and UI/UX designer with a strong interest in blockchain and emerging web technologies. I create responsive interfaces, clear product experiences, and thoughtful digital communication with practical execution in mind.',
   email: 'kelajane6@gmail.com',
   location: 'Nigeria',
-  availability: 'Available for select frontend and product collaborations',
-  resumePath: '/resume/david-anthony-resume.pdf',
+  availability: 'Available for frontend and design collaborations',
+  resumeViewPath: '/resume/david-anthony-resume.html',
+  resumeDownloadPath: '/resume/david-anthony-cv.pdf',
   github: 'https://github.com/Kelajane6',
-  linkedin: 'https://linkedin.com/in/david-ajaraogu',
+  linkedin: 'https://www.linkedin.com/in/blockchainwhizzy',
   x: 'https://twitter.com/blockchainwhizy',
   whatsapp: 'https://wa.me/2347015336065',
   telegram: 'https://t.me/blockchainwhizzy',
@@ -75,8 +65,8 @@ export const skillGroups: SkillGroup[] = [
     items: ['Figma', 'UI Design', 'Design Systems', 'Wireframing', 'User Flows', 'Visual Design'],
   },
   {
-    category: 'Blockchain / Web3',
-    items: ['Solidity', 'Smart Contracts', 'Web3.js', 'Ethers.js', 'Decentralized UX', 'Blockchain Concepts'],
+    category: 'Interests / Exploring',
+    items: ['Blockchain concepts', 'Web3 ecosystem', 'Decentralized product thinking', 'Cryptocurrency fundamentals', 'Emerging technology learning'],
   },
   {
     category: 'Tools & Workflow',
@@ -84,45 +74,14 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export const projects: Project[] = [
-  {
-    title: 'DeFi Dashboard',
-    description: 'A responsive dashboard for surfacing asset data, portfolio movement, and blockchain insights in a clear, trusted interface.',
-    impact: 'Focused on making complex on-chain information easier to scan and act on without overwhelming the user.',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Web3.js', 'Ethers.js'],
-    featured: true,
-    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=1200',
-    href: '#',
-    repo: '#',
-  },
-  {
-    title: 'NFT Marketplace UI',
-    description: 'A premium marketplace concept built around discovery, trust, and a polished collection experience across device sizes.',
-    impact: 'Balanced visual presentation with performance-conscious layouts and intuitive browsing patterns.',
-    stack: ['Next.js', 'Framer Motion', 'TypeScript', 'Tailwind CSS', 'IPFS'],
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1200',
-    href: '#',
-    repo: '#',
-  },
-  {
-    title: 'Brand Identity System',
-    description: 'A visual language project covering logos, layouts, and design direction for a tech-focused brand.',
-    impact: 'Created a cohesive identity built around clarity, differentiation, and professional confidence.',
-    stack: ['Brand Design', 'Figma', 'Illustrator', 'Photoshop'],
-    image: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&q=80&w=1200',
-    href: '#',
-    repo: '#',
-  },
-];
-
 export const journey: JourneyItem[] = [
   {
     period: 'Current focus',
-    title: 'Product-focused frontend development',
+    title: 'Frontend development and product design',
     company: 'Independent work',
     details: [
       'Building polished user interfaces with a strong focus on layout quality, accessibility, and maintainable code.',
-      'Exploring blockchain and Web3 product experiences while keeping user trust and clarity at the center.',
+      'Exploring blockchain and Web3 concepts through a product lens while prioritizing usability, clarity, and trust.',
     ],
   },
   {
@@ -131,16 +90,16 @@ export const journey: JourneyItem[] = [
     company: 'IT and creative work',
     details: [
       'Worked across troubleshooting, systems thinking, and visual execution to understand both technical stability and user experience.',
-      'Combined design sensibility with development practices to create interfaces that are useful and distinctive.',
+      'Combined design sensibility with development practices to create interfaces that are useful, clear, and distinctive.',
     ],
   },
   {
     period: 'Learning path',
-    title: 'Frontend, blockchain, and design exploration',
+    title: 'Frontend craft, design thinking, and emerging technology',
     company: 'Self-directed growth',
     details: [
       'Built practical experience with modern web tools, responsive UI work, and product-oriented implementation decisions.',
-      'Continued developing expertise in the intersection of front-end engineering, branding, and decentralized products.',
+      'Continued expanding knowledge at the intersection of frontend engineering, design, and emerging digital experiences.',
     ],
   },
 ];

@@ -2,11 +2,11 @@
 
 ## Overview
 
-This portfolio presents David Anthony as a frontend-focused product-minded developer with a clean, modern, and responsive visual identity. It highlights technical skill, clarity of execution, and practical product thinking.
+This portfolio presents David Anthony as a frontend developer and UI/UX designer with a clear focus on responsive design, practical product thinking, and modern interface craft. The experience is positioned honestly and professionally without overstating blockchain development work.
 
 ## About
 
-David Anthony builds thoughtfully designed interfaces and digital experiences that balance usability, visual quality, and technical execution. The portfolio focuses on frontend work, product-oriented thinking, and a strong interest in user-centered design.
+David Anthony builds thoughtful digital experiences that balance usability, visual quality, and technical execution. The portfolio focuses on frontend work, design sensitivity, and a sincere interest in blockchain and emerging web technologies.
 
 ## Skills
 
@@ -15,33 +15,35 @@ David Anthony builds thoughtfully designed interfaces and digital experiences th
 - React and responsive UI architecture
 - Tailwind CSS and component-driven design
 - Figma and UI design
-- Web3 and blockchain concepts
+- Product-minded thinking
 - Git and collaborative software workflows
+- Blockchain and Web3 concepts as an area of learning and exploration
 
 ## Featured Projects
 
-- DeFi Dashboard
-- NFT Marketplace UI
-- Brand Identity System
+- Portfolio Project Showcase
+- UI Design Exploration
+- Brand Identity Direction
 
 ## Technologies
 
-React, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, Figma, Web3.js, Ethers.js, GitHub, Vite.
+React, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, Figma, GitHub, Vite.
 
 ## Experience / Journey
 
-The experience section reflects a practical path rooted in product thinking, frontend work, design sensibility, and system-oriented development.
+The experience section reflects a practical path rooted in frontend work, product thinking, design sensibility, and a continuing interest in emerging technologies.
 
 ## Resume
 
 View the resume here:
 
 - /resume/david-anthony-resume.html
+- Download: /resume/david-anthony-cv.pdf
 
 ## Contact
 
 - Email: kelajane6@gmail.com
-- LinkedIn: https://linkedin.com/in/david-ajaraogu
+- LinkedIn: https://www.linkedin.com/in/blockchainwhizzy
 - GitHub: https://github.com/Kelajane6
 - X: https://twitter.com/blockchainwhizy
 

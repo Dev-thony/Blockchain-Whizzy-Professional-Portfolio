@@ -40,12 +40,11 @@ export function Header() {
 
         <div className="hidden md:block">
           <a
-            href={personalInfo.resumePath}
-            target="_blank"
-            rel="noreferrer"
+            href={personalInfo.resumeDownloadPath}
+            download="David-Anthony-CV.pdf"
             className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-100"
           >
-            Resume
+            Download CV
             <ArrowUpRight size={16} />
           </a>
         </div>
@@ -75,13 +74,12 @@ export function Header() {
               </a>
             ))}
             <a
-              href={personalInfo.resumePath}
-              target="_blank"
-              rel="noreferrer"
+              href={personalInfo.resumeDownloadPath}
+              download="David-Anthony-CV.pdf"
               onClick={closeMenu}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-slate-950"
             >
-              View Resume
+              Download CV
               <ArrowUpRight size={16} />
             </a>
           </nav>

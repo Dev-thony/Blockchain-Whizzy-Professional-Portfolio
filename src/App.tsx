@@ -3,7 +3,8 @@ import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
 import { Button } from './components/ui/Button';
 import { SectionHeading } from './components/ui/SectionHeading';
-import { capabilities, journey, personalInfo, projects, skillGroups, socialLinks } from './data/portfolio';
+import { capabilities, journey, personalInfo, skillGroups, socialLinks } from './data/portfolio';
+import { projects } from './data/projects';
 
 function App() {
   return (
@@ -39,9 +40,16 @@ function App() {
                 </a>
 
                 <a
-                  href={personalInfo.resumePath}
+                  href={personalInfo.resumeViewPath}
                   target="_blank"
                   rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
+                >
+                  View CV
+                </a>
+                <a
+                  href={personalInfo.resumeDownloadPath}
+                  download="David-Anthony-CV.pdf"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
                 >
                   <Download size={16} />
@@ -200,6 +208,10 @@ function App() {
                   <img
                     src={project.image}
                     alt={project.title}
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = '/favicon.svg';
+                    }}
                     className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -213,9 +225,9 @@ function App() {
                     ) : null}
                   </div>
                   <p className="text-sm leading-6 text-slate-300">{project.description}</p>
-                  <p className="mt-4 text-sm leading-6 text-slate-400">{project.impact}</p>
+                  {project.impact ? <p className="mt-4 text-sm leading-6 text-slate-400">{project.impact}</p> : null}
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {project.stack.map((item) => (
+                    {project.technologies.map((item) => (
                       <span
                         key={item}
                         className="rounded-full border border-slate-700 bg-slate-950 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-300"
@@ -225,14 +237,20 @@ function App() {
                     ))}
                   </div>
                   <div className="mt-6 flex gap-3">
-                    <a href={project.href} className="inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-slate-200">
-                      Live project
-                      <ArrowRight size={15} />
-                    </a>
-                    <a href={project.repo} className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-white">
-                      Source
-                      <Github size={15} />
-                    </a>
+                    {project.liveUrl ? (
+                      <a href={project.liveUrl} className="inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-slate-200">
+                        View project
+                        <ArrowRight size={15} />
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-400">Coming soon</span>
+                    )}
+                    {project.githubUrl ? (
+                      <a href={project.githubUrl} className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-white">
+                        Source
+                        <Github size={15} />
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </article>
@@ -300,15 +318,24 @@ function App() {
                   Professionals can review my background in full.
                 </h2>
               </div>
-              <a
-                href={personalInfo.resumePath}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
-              >
-                View resume
-                <Download size={16} />
-              </a>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={personalInfo.resumeViewPath}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
+                >
+                  View CV
+                </a>
+                <a
+                  href={personalInfo.resumeDownloadPath}
+                  download="David-Anthony-CV.pdf"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
+                >
+                  Download CV
+                  <Download size={16} />
+                </a>
+              </div>
             </div>
           </div>
         </section>
