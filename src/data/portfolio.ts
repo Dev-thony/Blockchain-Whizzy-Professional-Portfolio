@@ -6,7 +6,7 @@ export type NavItem = {
 export type SocialLink = {
   platform: string;
   url: string;
-  icon: 'linkedin' | 'github' | 'x' | 'mail' | 'message';
+  icon: 'linkedin' | 'github' | 'x' | 'whatsapp' | 'telegram' | 'mail' | 'instagram';
 };
 
 export type SkillGroup = {
@@ -31,13 +31,18 @@ export const personalInfo = {
   email: 'kelajane6@gmail.com',
   location: 'Nigeria',
   availability: 'Available for frontend and design collaborations',
-  resumeViewPath: '/resume/david-anthony-resume.html',
+  // Single authoritative CV source. View CV and Download CV both point to this file,
+  // so the resume you see is always the resume you download.
+  resumeViewPath: '/resume/david-anthony-cv.pdf',
   resumeDownloadPath: '/resume/david-anthony-cv.pdf',
-  github: 'https://github.com/Kelajane6',
+  // Local professional profile placeholder. Replace this file to add a real photo.
+  profileImage: '/images/profile-placeholder.svg',
+  github: 'https://github.com/Dev-thony',
   linkedin: 'https://www.linkedin.com/in/blockchainwhizzy',
-  x: 'https://twitter.com/blockchainwhizy',
+  x: 'https://twitter.com/Blockchainwhizy',
   whatsapp: 'https://wa.me/2347015336065',
   telegram: 'https://t.me/blockchainwhizzy',
+  instagram: 'https://www.instagram.com/blockchainwhizzy/',
 };
 
 export const navItems: NavItem[] = [
@@ -48,11 +53,22 @@ export const navItems: NavItem[] = [
   { label: 'Contact', href: '#contact' },
 ];
 
+/**
+ * Authoritative list of every social platform shown across the site.
+ * The Contact section and the Footer both read from this single source.
+ *
+ * To add another social platform, add another object to this list with the
+ * platform name, URL, and appropriate icon. If the icon is not already handled
+ * by the SocialIcon component, add it there too.
+ */
 export const socialLinks: SocialLink[] = [
-  { platform: 'LinkedIn', url: personalInfo.linkedin, icon: 'linkedin' },
-  { platform: 'GitHub', url: personalInfo.github, icon: 'github' },
-  { platform: 'X', url: personalInfo.x, icon: 'x' },
-  { platform: 'Email', url: `mailto:${personalInfo.email}`, icon: 'mail' },
+  { platform: "LinkedIn", url: personalInfo.linkedin, icon: "linkedin" },
+  { platform: "GitHub", url: personalInfo.github, icon: "github" },
+  { platform: "X", url: personalInfo.x, icon: "x" },
+  { platform: "WhatsApp", url: personalInfo.whatsapp, icon: "whatsapp" },
+  { platform: "Telegram", url: personalInfo.telegram, icon: "telegram" },
+  { platform: "Instagram", url: personalInfo.instagram, icon: "instagram" },
+  { platform: "Email", url: `mailto:${personalInfo.email}`, icon: "mail" },
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -62,7 +78,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Design & UX',
-    items: ['Figma', 'UI Design', 'Design Systems', 'Wireframing', 'User Flows', 'Visual Design'],
+    items: ['UI Design', 'Design Systems', 'Wireframing', 'User Flows', 'Visual Design'],
   },
   {
     category: 'Interests / Exploring',
@@ -70,7 +86,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Tools & Workflow',
-    items: ['Git', 'GitHub', 'Vite', 'VS Code', 'Adobe Photoshop', 'Adobe Illustrator'],
+    items: ['Git', 'GitHub', 'Vite', 'VS Code', 'IDE', 'Command Line', 'Productivity Tools', 'Figma'],
   },
 ];
 

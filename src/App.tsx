@@ -1,404 +1,709 @@
-import { ArrowRight, BriefcaseBusiness, Code2, Download, Github, Linkedin, Mail, MapPin, Sparkles, Star, CheckCircle2 } from 'lucide-react';
-import { Footer } from './components/layout/Footer';
-import { Header } from './components/layout/Header';
-import { Button } from './components/ui/Button';
-import { SectionHeading } from './components/ui/SectionHeading';
-import { capabilities, journey, personalInfo, skillGroups, socialLinks } from './data/portfolio';
-import { projects } from './data/projects';
+import {
+  ArrowUpRight,
+  Download,
+  Github,
+  Mail,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
+
+import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
+import { Reveal } from "./components/ui/Reveal";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { LoadingScreen } from "./components/ui/LoadingScreen";
+import { CustomCursor } from "./components/ui/CustomCursor";
+import { SectionHeading } from "./components/ui/SectionHeading";
+import { SocialIcon } from "./components/ui/SocialIcon";
+
+import {
+  capabilities,
+  journey,
+  personalInfo,
+  skillGroups,
+  socialLinks,
+} from "./data/portfolio";
+
+import { projects } from "./data/projects";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   return (
-    <div id="top" className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-slate-200 selection:text-slate-950">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[30rem] bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.16),_transparent_55%)]" />
+    <div
+      id="top"
+      className="min-h-screen bg-[#090909] text-[#F5F5F5] antialiased"
+    >
+      <>
+        {loading && <LoadingScreen onFinish={() => setLoading(false)} />}
 
-      <Header />
+        <motion.div
+          id="top"
+          className="min-h-screen bg-[#090909] text-[#F5F5F5] antialiased"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: loading ? 0 : 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <CustomCursor />
 
-      <main>
-        <section className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                {personalInfo.availability}
-              </div>
+          <Header />
 
-              <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                {personalInfo.headline}
-              </h1>
+          {/* ========================================================= */}
+          {/* HERO */}
+          {/* ========================================================= */}
 
-              <p className="mt-6 max-w-lg text-base leading-7 text-slate-300 md:text-lg">
-                {personalInfo.summary}
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#projects"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
-                >
-                  View work
-                  <ArrowRight size={16} />
-                </a>
-
-                <a
-                  href={personalInfo.resumeViewPath}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
-                >
-                  View CV
-                </a>
-                <a
-                  href={personalInfo.resumeDownloadPath}
-                  download="David-Anthony-CV.pdf"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
-                >
-                  <Download size={16} />
-                  Download CV
-                </a>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-300">
-                <span className="inline-flex items-center gap-2">
-                  <MapPin size={15} />
-                  {personalInfo.location}
-                </span>
-                <a href={`mailto:${personalInfo.email}`} className="inline-flex items-center gap-2 transition hover:text-white">
-                  <Mail size={15} />
-                  {personalInfo.email}
-                </a>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-slate-700/30 via-slate-900 to-slate-950 blur-2xl" />
-              <div className="overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/80 p-5 shadow-2xl shadow-slate-950/40">
-                <div className="mb-5 flex items-center justify-between border-b border-slate-800 pb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-red-400" />
-                    <span className="h-3 w-3 rounded-full bg-amber-400" />
-                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-slate-400">portfolio</span>
+          <section className="container-editorial relative flex min-h-screen items-center pt-32 pb-20">
+            <div className="w-full">
+              {/* Availability */}
+              <Reveal>
+                <div className="mb-10 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-neutral-500">
+                  <span className="h-2 w-2 rounded-full bg-lime-400" />
+                  {personalInfo.availability}
                 </div>
+              </Reveal>
 
-                <div className="space-y-5">
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">role</p>
-                    <p className="mt-3 text-2xl font-semibold text-white">{personalInfo.title}</p>
-                  </div>
+              <div className="my-10 h-px w-20 bg-white/15" />
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">focus</p>
-                      <p className="mt-3 flex items-center gap-2 text-lg font-medium text-white">
-                        <Code2 size={18} /> Frontend
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">specialty</p>
-                      <p className="mt-3 flex items-center gap-2 text-lg font-medium text-white">
-                        <Sparkles size={18} /> Product UI
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                    <div className="mb-3 flex items-center justify-between">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">strength</p>
-                      <Star className="text-amber-300" size={16} />
-                    </div>
-                    <ul className="space-y-3 text-sm text-slate-300">
-                      <li className="flex gap-2">
-                        <CheckCircle2 size={16} className="mt-0.5 text-emerald-400" />
-                        Responsive, accessible interfaces
-                      </li>
-                      <li className="flex gap-2">
-                        <CheckCircle2 size={16} className="mt-0.5 text-emerald-400" />
-                        Clean design systems and implementation
-                      </li>
-                      <li className="flex gap-2">
-                        <CheckCircle2 size={16} className="mt-0.5 text-emerald-400" />
-                        Thoughtful product decision-making
-                      </li>
-                    </ul>
-                  </div>
+              {/* Giant Heading */}
+              <Reveal delay={100}>
+                <div className="space-y-2">
+                  <h1 className="display text-white">DAVID</h1>
+                  <h1 className="display text-neutral-600">ANTHONY</h1>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </Reveal>
 
-        <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="About"
-            title="Building digital experiences with clear thinking and craft."
-            description="I blend interface design, frontend engineering, and product logic to create work that feels direct, confident, and easy to use."
-          />
+              {/* Divider */}
+              <Reveal delay={150}>
+                <div className="my-12 h-px w-full bg-white/10" />
+              </Reveal>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 md:p-8">
-              <p className="text-lg leading-8 text-slate-200">
-                I’m David Anthony, a frontend developer and digital product-minded builder focused on creating thoughtful user experiences. My work sits at the intersection of clear design decisions, strong interfaces, and practical engineering.
-              </p>
-              <p className="mt-5 text-base leading-7 text-slate-300">
-                I enjoy solving product problems in ways that are polished and accessible, whether that means shaping layout and interaction patterns, turning concepts into production-ready interfaces, or improving a user journey with better clarity and flow.
-              </p>
-            </div>
+              {/* Bottom Intro Grid */}
+              <Reveal delay={250}>
+                <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+                  {/* Left Content */}
+                  <div>
+                    <p className="max-w-xl text-lg leading-8 text-neutral-300">
+                      {personalInfo.summary}
+                    </p>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 md:p-8">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-slate-400">What I care about</p>
-              <ul className="mt-5 space-y-4 text-base text-slate-200">
-                {[
-                  'Clear user experience',
-                  'Strong frontend fundamentals',
-                  'Design systems and consistency',
-                  'Meaningful product decisions',
-                  'Simple communication with technical depth',
-                ].map((point) => (
-                  <li key={point} className="flex items-start gap-3">
-                    <span className="mt-1 h-2.5 w-2.5 rounded-full bg-white" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Skills"
-            title="I work across design, frontend engineering, and product thinking."
-            description="The stack below reflects the areas I’m strongest in and the tools I use to bring product work to life."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {skillGroups.map((group) => (
-              <div key={group.category} className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">{group.category}</p>
-                <ul className="mt-5 space-y-3 text-sm text-slate-200">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Projects"
-            title="Selected work that demonstrates clarity, craft, and product thinking."
-            description="I focus on projects that combine decision-making, visual quality, and practical implementation."
-          />
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className={`group overflow-hidden rounded-[1.75rem] border ${
-                  project.featured ? 'border-slate-600 bg-slate-900' : 'border-slate-800 bg-slate-900/70'
-                } transition hover:-translate-y-1 hover:border-slate-600`}
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    onError={(event) => {
-                      event.currentTarget.onerror = null;
-                      event.currentTarget.src = '/favicon.svg';
-                    }}
-                    className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-5">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                    {project.featured ? (
-                      <span className="rounded-full border border-slate-700 bg-slate-800 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-slate-300">
-                        Featured
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="text-sm leading-6 text-slate-300">{project.description}</p>
-                  {project.impact ? <p className="mt-4 text-sm leading-6 text-slate-400">{project.impact}</p> : null}
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.technologies.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-slate-700 bg-slate-950 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-300"
+                    <div className="mt-10 flex flex-wrap items-center gap-4">
+                      {/* Primary CTA */}
+                      <a
+                        href="#projects"
+                        className="group cursor-hover inline-flex h-12 items-center gap-3 border border-white px-6 text-xs font-medium uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-white hover:text-black!"
                       >
-                        {item}
-                      </span>
+                        Selected Work
+                        <ArrowUpRight
+                          size={15}
+                          className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                        />
+                      </a>
+
+                      {/* Secondary CTA */}
+                      <a
+                        href={personalInfo.resumeDownloadPath}
+                        download="David-Anthony-CV.pdf"
+                        className="group cursor-hover inline-flex h-12 items-center gap-3 border border-white/20 px-6 text-xs font-medium uppercase tracking-[0.3em] text-neutral-400 transition-all duration-300 hover:border-white hover:text-white"
+                      >
+                        Download CV
+                        <Download
+                          size={15}
+                          className="transition-transform duration-300 group-hover:-translate-y-1"
+                        />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Info */}
+                  <div className="space-y-8 border-l border-white/10 pl-6 lg:pl-10">
+                    <div>
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-neutral-500">
+                        Role
+                      </p>
+
+                      <h2 className="font-heading text-3xl leading-tight">
+                        {personalInfo.title}
+                      </h2>
+                    </div>
+
+                    <div>
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-neutral-500">
+                        Location
+                      </p>
+
+                      <div className="flex items-center gap-2 text-neutral-300">
+                        <MapPin size={15} />
+                        {personalInfo.location}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-neutral-500">
+                        Email
+                      </p>
+
+                      <a
+                        href={`mailto:${personalInfo.email}`}
+                        className="inline-flex items-center gap-2 text-neutral-300 transition hover:text-white"
+                      >
+                        <Mail size={15} />
+                        {personalInfo.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Huge Scroll Label */}
+              <div className="absolute bottom-10 left-0 hidden lg:flex items-center gap-4 text-[11px] uppercase tracking-[0.45em] text-neutral-600">
+                <div className="h-px w-16 bg-neutral-700" />
+                Scroll
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================= */}
+          {/* ABOUT */}
+          {/* ========================================================= */}
+
+          <section
+            id="about"
+            className="container-editorial relative flex min-h-screen items-center pt-32 pb-20"
+          >
+            <div className="w-full">
+              <Reveal>
+                <div>
+                  {/* Left Label */}
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                      About
+                    </p>
+                  </div>
+
+                  {/* Right Content */}
+                  <div className="space-y-12 mt-2">
+                    <h2 className="section-title max-w-4xl">
+                      I design and build digital products with an obsession for
+                      simplicity, usability, and visual clarity.
+                    </h2>
+
+                    <div className="grid gap-10 lg:grid-cols-2 text-neutral-300 leading-8">
+                      <p>
+                        I'm{" "}
+                        <span className="text-white font-medium">
+                          David Anthony
+                        </span>
+                        , a frontend engineer and product-focused developer who
+                        enjoys turning ambitious ideas into elegant interfaces.
+                        I care about products that feel intuitive before they
+                        feel impressive.
+                      </p>
+
+                      <p>
+                        Every interface I build is guided by structure,
+                        typography, spacing, accessibility, and performance. I
+                        enjoy collaborating with designers and founders to
+                        transform concepts into polished user experiences.
+                      </p>
+                    </div>
+
+                    {/* Values */}
+                    <div className="border-t border-white/10 pt-12">
+                      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+                        {[
+                          ["01", "Frontend Engineering"],
+                          ["02", "Design Systems"],
+                          ["03", "Product Thinking"],
+                          ["04", "Responsive UX"],
+                        ].map(([number, title]) => (
+                          <div key={number}>
+                            <p className="text-neutral-600 text-sm mb-3">
+                              {number}
+                            </p>
+
+                            <h3 className="font-heading text-lg text-white">
+                              {title}
+                            </h3>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Quote */}
+                    <div className="border-l border-white/20 pl-6 italic text-neutral-400 text-lg leading-8 mb-15">
+                      “Good interfaces disappear. Great interfaces make people
+                      feel confident.”
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Huge Scroll Label */}
+              <div className="absolute bottom-10 left-0 hidden lg:flex items-center gap-4 text-[11px] uppercase tracking-[0.45em] text-neutral-600">
+                <div className="h-px w-16 bg-neutral-700" />
+                Scroll
+              </div>
+            </div>
+          </section>
+
+          {/* ========================================================= */}
+          {/* SKILLS */}
+          {/* ========================================================= */}
+
+          <section id="skills" className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div className="mb-12 space-y-6">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                    Skills
+                  </p>
+
+                  <h2 className="section-title mt-4 max-w-2xl">
+                    Tools and technologies I use to craft modern web
+                    experiences.
+                  </h2>
+                </div>
+
+                <p className="max-w-sm text-neutral-400 leading-7">
+                  I work across interface design, frontend engineering,
+                  animation, performance optimization, and product
+                  implementation.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Big Editorial Grid */}
+            <div className="mt-24 space-y-24">
+              {skillGroups.map((group, index) => (
+                <Reveal key={group.category} delay={index * 80}>
+                  <div className="grid gap-8 border-t border-white/10 pt-10 lg:grid-cols-[220px_1fr]">
+                    {/* Category */}
+                    <div>
+                      <p className="mb-3 text-xs uppercase tracking-[0.35em] text-neutral-600">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+
+                      <h3 className="font-heading text-2xl text-white">
+                        {group.category}
+                      </h3>
+                    </div>
+
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-3">
+                      {group.items.map((skill) => (
+                        <span
+                          key={skill}
+                          className="cursor-hover border border-white/10 px-5 py-3 text-[11px] uppercase tracking-[0.28em] text-neutral-400 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Bottom Capability Strip */}
+            <Reveal delay={250}>
+              <div className="mt-28 border-y border-white/10 py-10">
+                <div className="flex flex-wrap items-center gap-4 text-sm uppercase tracking-[0.28em] text-neutral-500">
+                  {[
+                    "React",
+                    "TypeScript",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "Framer Motion",
+                    "Supabase",
+                    "Firebase",
+                    "Node.js",
+                  ].map((skill) => (
+                    <span key={skill} className="transition hover:text-white">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          {/* ========================================================= */}
+          {/* PROJECTS */}
+          {/* ========================================================= */}
+
+          <section id="projects" className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                    Selected Work
+                  </p>
+
+                  <h2 className="section-title mt-4 max-w-3xl">
+                    Projects where design decisions meet engineering execution.
+                  </h2>
+                </div>
+
+                <p className="max-w-md text-neutral-400 leading-7">
+                  Every project below represents a product challenge I solved
+                  through UI, frontend architecture, responsiveness,
+                  accessibility, and thoughtful implementation.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-24 space-y-32">
+              {projects.map((project, index) => (
+                <Reveal key={project.title} delay={index * 100}>
+                  <article className="cursor-hover">
+                    <div
+                      className={`grid gap-12 items-center ${
+                        index % 2 === 0
+                          ? "lg:grid-cols-[1.1fr_0.9fr]"
+                          : "lg:grid-cols-[0.9fr_1.1fr]"
+                      }`}
+                    >
+                      {/* IMAGE */}
+                      <div className={index % 2 !== 0 ? "lg:order-2" : ""}>
+                        <div className="overflow-hidden rounded-sm border border-white/10 bg-neutral-900">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            onError={(event) => {
+                              event.currentTarget.onerror = null;
+                              event.currentTarget.src = "/favicon.svg";
+                            }}
+                            className="h-105 w-full object-cover transition duration-700 hover:scale-105"
+                          />
+                        </div>
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className={index % 2 !== 0 ? "lg:order-1" : ""}>
+                        <p className="text-neutral-600 text-sm mb-4">
+                          {String(index + 1).padStart(2, "0")}
+                        </p>
+
+                        <h3 className="font-heading text-5xl leading-none text-white">
+                          {project.title}
+                        </h3>
+
+                        <p className="mt-8 text-neutral-300 leading-8 text-lg">
+                          {project.description}
+                        </p>
+
+                        {project.impact && (
+                          <p className="mt-6 border-l border-white/20 pl-5 text-neutral-400 leading-7">
+                            {project.impact}
+                          </p>
+                        )}
+
+                        {/* TECH STACK */}
+                        <div className="mt-10 flex flex-wrap gap-3">
+                          {project.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="border border-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-neutral-400"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* LINKS */}
+                        <div className="mt-10 flex flex-wrap gap-8 text-sm uppercase tracking-[0.25em]">
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              className="group flex items-center gap-2 text-white"
+                            >
+                              {project.type === "design"
+                                ? "Live Design"
+                                : "Live Site"}
+                              <ArrowUpRight
+                                size={15}
+                                className="transition group-hover:-translate-y-1 group-hover:translate-x-1"
+                              />
+                            </a>
+                          )}
+
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              className="group flex items-center gap-2 text-neutral-400 transition hover:text-white"
+                            >
+                              Source
+                              <Github
+                                size={15}
+                                className="transition group-hover:rotate-12"
+                              />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          {/* ========================================================= */}
+          {/* JOURNEY / EXPERIENCE */}
+          {/* ========================================================= */}
+
+          <section id="journey" className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                    Journey
+                  </p>
+
+                  <h2 className="font-heading mt-5 text-4xl leading-tight">
+                    Experience shaped by building products and learning in
+                    public.
+                  </h2>
+                </div>
+
+                <p className="max-w-xl text-neutral-400 leading-8">
+                  Every step in my journey has been focused on improving how
+                  users interact with software while strengthening frontend
+                  engineering practices.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Timeline */}
+            <div className="relative mt-28 ml-2 border-l border-white/5">
+              {journey.map((item, index) => (
+                <Reveal key={item.title} delay={index * 80}>
+                  <article className="relative ml-10 py-20">
+                    {/* Timeline Dot */}
+                    <div className="absolute -left-11.5 top-22 h-4 w-4 rounded-full border border-white bg-[#090909]" />
+
+                    {/* Period */}
+                    <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-neutral-600">
+                      {item.period}
+                    </p>
+
+                    {/* Title */}
+                    <h3 className="font-heading text-3xl leading-tight text-white sm:text-4xl">
+                      {item.title}
+                    </h3>
+
+                    {/* Company */}
+                    <p className="mt-4 text-xs uppercase tracking-[0.3em] text-neutral-500">
+                      {item.company}
+                    </p>
+
+                    {/* Details */}
+                    <div className="mt-10 space-y-5">
+                      {item.details.map((detail) => (
+                        <div key={detail} className="flex gap-4">
+                          <span className="mt-11px h-1.5 w-1.5 rounded-full bg-neutral-500" />
+
+                          <p className="max-w-2xl leading-8 text-neutral-300">
+                            {detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Large Statement */}
+            <Reveal delay={250}>
+              <div className="mt-32 border-t border-white/10 pt-14">
+                <p className="max-w-4xl font-heading text-3xl leading-tight text-neutral-200 sm:text-4xl lg:text-5xl">
+                  I enjoy building products that feel calm, intentional, and
+                  effortless to use—through clean interfaces, strong systems,
+                  and thoughtful engineering.
+                </p>
+              </div>
+            </Reveal>
+          </section>
+
+          {/* ========================================================= */}
+          {/* CAPABILITIES */}
+          {/* ========================================================= */}
+
+          <section className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div className="border-y border-white/10 py-14">
+                <div>
+                  <div className="mb-5">
+                    <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                      Capabilities
+                    </p>
+                  </div>
+
+                  <div className="grid gap-5 md:grid-cols-2">
+                    {capabilities.map((item, index) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-4 border-b border-white/5 pb-5"
+                      >
+                        <span className="text-neutral-600 text-sm">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <p className="text-lg text-neutral-200 leading-8">
+                          {item}
+                        </p>
+                      </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex gap-3">
-                    {project.liveUrl ? (
-                      <a href={project.liveUrl} className="inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-slate-200">
-                        View project
-                        <ArrowRight size={15} />
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-400">Coming soon</span>
-                    )}
-                    {project.githubUrl ? (
-                      <a href={project.githubUrl} className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-white">
-                        Source
-                        <Github size={15} />
-                      </a>
-                    ) : null}
-                  </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="journey" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Journey"
-            title="A practical path shaped by product thinking and technical depth."
-            description="The work and learning behind my approach is grounded in building interfaces that are usable, scalable, and easy to trust."
-          />
-
-          <div className="mt-10 space-y-5">
-            {journey.map((item) => (
-              <article key={item.title} className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 md:p-7">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-slate-400">{item.period}</p>
-                    <h3 className="mt-2 text-xl font-semibold text-white">{item.title}</h3>
-                  </div>
-                  <span className="inline-flex rounded-full border border-slate-700 bg-slate-950 px-3 py-1 text-xs text-slate-300">
-                    {item.company}
-                  </span>
-                </div>
-                <ul className="mt-5 space-y-3 text-base leading-7 text-slate-300">
-                  {item.details.map((detail) => (
-                    <li key={detail} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white" />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Capabilities"
-            title="I help build interfaces that are useful, confident, and responsive."
-            description="This is the practical range of work I’m best positioned to support."
-          />
-
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((item) => (
-              <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-slate-200">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-950">
-                  <BriefcaseBusiness size={16} />
-                </div>
-                <span>{item}</span>
               </div>
-            ))}
-          </div>
-        </section>
+            </Reveal>
+          </section>
 
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="rounded-[2rem] border border-slate-800 bg-slate-900/80 p-6 md:p-8 lg:p-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">Resume</p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-                  Professionals can review my background in full.
+          {/* ========================================================= */}
+          {/* RESUME CTA */}
+          {/* ========================================================= */}
+
+          <section className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div className="border border-white/10 p-10 md:p-16">
+                <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                  Resume
+                </p>
+
+                <h2 className="mt-6 font-heading text-5xl leading-none lg:text-7xl">
+                  Curious about the details?
                 </h2>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={personalInfo.resumeViewPath}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-800"
-                >
-                  View CV
-                </a>
-                <a
-                  href={personalInfo.resumeDownloadPath}
-                  download="David-Anthony-CV.pdf"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
-                >
-                  Download CV
-                  <Download size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section id="contact" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Contact"
-            title="Let’s build something clear, useful, and durable."
-            description="I’m open to meaningful frontend and product work, collaborations, and thoughtful conversations."
-          />
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-400">
+                  My resume contains experience, projects, technical stack, and
+                  the product work I've contributed to across frontend
+                  engineering and UI.
+                </p>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[2rem] border border-slate-800 bg-slate-900/70 p-6 md:p-8">
-              <div className="space-y-5 text-slate-200">
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 p-4 transition hover:border-slate-600"
-                >
-                  <Mail size={18} className="text-slate-100" />
-                  <span>{personalInfo.email}</span>
-                </a>
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 p-4 transition hover:border-slate-600"
-                >
-                  <Linkedin size={18} className="text-slate-100" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 p-4 transition hover:border-slate-600"
-                >
-                  <Github size={18} className="text-slate-100" />
-                  <span>GitHub</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-slate-800 bg-slate-900/70 p-6 md:p-8">
-              <p className="text-sm leading-7 text-slate-300">
-                If you’re looking for a developer who values clarity, product thinking, and a polished execution style, I’d be glad to hear about the work.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {socialLinks.map((link) => (
+                <div className="mt-12 flex flex-wrap gap-5">
                   <a
-                    key={link.platform}
-                    href={link.url}
-                    target={link.url.startsWith('http') ? '_blank' : undefined}
-                    rel={link.url.startsWith('http') ? 'noreferrer' : undefined}
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-3 py-2 text-sm text-slate-200 transition hover:border-slate-500 hover:text-white"
+                    href={personalInfo.resumeViewPath}
+                    className="group flex items-center gap-3 border border-white px-7 py-4 text-sm uppercase tracking-[0.25em] transition hover:bg-white hover:text-black!"
                   >
-                    {link.platform}
+                    View Resume
+                    <ArrowUpRight
+                      size={16}
+                      className="transition group-hover:-translate-y-1 group-hover:translate-x-1"
+                    />
                   </a>
-                ))}
+
+                  <a
+                    href={personalInfo.resumeDownloadPath}
+                    download="David-Anthony-CV.pdf"
+                    className="group flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-[0.25em] text-neutral-400 transition hover:border-white hover:text-white"
+                  >
+                    Download
+                    <Download
+                      size={16}
+                      className="transition group-hover:-translate-y-1"
+                    />
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-      </main>
+            </Reveal>
+          </section>
+
+          {/* ========================================================= */}
+          {/* CONTACT */}
+          {/* ========================================================= */}
+
+          <section id="contact" className="container-editorial pt-32 pb-20">
+            <Reveal>
+              <div className="space-y-12">
+                <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+                  Contact
+                </p>
+
+                {/* Huge Closing Heading */}
+                <h2 className="display text-[14.5vw] leading-[0.9] text-white">
+                  LET'S BUILD
+                </h2>
+
+                <h2 className="display text-[15vw] leading-[0.9] text-neutral-700">
+                  TOGETHER
+                </h2>
+
+                <div className="h-px w-full bg-white/10" />
+
+                {/* Contact Grid */}
+                <div className="grid gap-16 pt-8 lg:grid-cols-[1fr_320px]">
+                  {/* Left */}
+                  <div>
+                    <p className="max-w-2xl text-xl leading-9 text-neutral-300">
+                      I'm available for frontend engineering roles, freelance
+                      projects, product collaborations, and conversations around
+                      UI, design systems, and digital experiences.
+                    </p>
+
+                    <a
+                      href={`mailto:${personalInfo.email}`}
+                      className="group mt-10 inline-flex items-center gap-3 text-lg text-white"
+                    >
+                      {personalInfo.email}
+
+                      <ArrowUpRight
+                        size={18}
+                        className="transition group-hover:-translate-y-1 group-hover:translate-x-1"
+                      />
+                    </a>
+
+                    <div className="mt-10 flex items-center gap-3 text-neutral-500">
+                      <MapPin size={16} />
+                      {personalInfo.location}
+                    </div>
+
+                    <div className="mt-3 flex items-center gap-3 text-neutral-500">
+                      <Sparkles size={16} />
+                      {personalInfo.availability}
+                    </div>
+                  </div>
+
+                  {/* Right Social Links */}
+                  <div className="space-y-6">
+                    {socialLinks.map((link) => (
+                      <a
+                        key={link.platform}
+                        href={link.url}
+                        target={
+                          link.url.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          link.url.startsWith("http") ? "noreferrer" : undefined
+                        }
+                        className="group flex items-center justify-between border-b border-white/10 pb-5 text-neutral-400 transition hover:text-white"
+                      >
+                        <div className="flex items-center gap-4">
+                          <SocialIcon
+                            name={link.icon}
+                            size={18}
+                            className="text-neutral-500 group-hover:text-white"
+                          />
+
+                          <span className="uppercase tracking-[0.22em] text-sm">
+                            {link.platform}
+                          </span>
+                        </div>
+
+                        <ArrowUpRight
+                          size={15}
+                          className="transition group-hover:-translate-y-1 group-hover:translate-x-1"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+        </motion.div>
+      </>
 
       <Footer />
     </div>

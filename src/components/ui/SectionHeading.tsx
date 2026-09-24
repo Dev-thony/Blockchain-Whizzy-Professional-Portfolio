@@ -4,12 +4,35 @@ type SectionHeadingProps = {
   description?: string;
 };
 
-export function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: SectionHeadingProps) {
   return (
-    <div style={{ maxWidth: '42rem' }}>
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">{eyebrow}</p>
-      <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{title}</h2>
-      {description ? <p className="mt-4 text-base leading-7 text-slate-300 md:text-lg">{description}</p> : null}
+    <div className="grid gap-8 lg:grid-cols-[220px_1fr] lg:gap-12">
+      {/* Small Section Label */}
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.35em] text-neutral-500">
+          {eyebrow}
+        </p>
+      </div>
+
+      {/* Main Heading */}
+      <div className="space-y-8">
+        <h2 className="font-heading text-4xl leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
+          {title}
+        </h2>
+
+        {description && (
+          <p className="max-w-2xl text-base leading-8 text-neutral-400 sm:text-lg">
+            {description}
+          </p>
+        )}
+
+        {/* Editorial divider */}
+        <div className="h-px w-full bg-white/10" />
+      </div>
     </div>
   );
 }

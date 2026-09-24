@@ -19,6 +19,8 @@ export type Project = {
   featured?: boolean;
   // Optional grouping label for future content organization.
   category?: string;
+  // Optional type for design projects.
+  type?: string;
 };
 
 // Add, remove, or update projects in this array. The Projects section reads from here automatically.
@@ -31,8 +33,7 @@ export const projects: Project[] = [
     impact:
       "Focuses on readability, visual polish, and a modern product-style layout that is easy to maintain.",
     technologies: ["HTML", "CSS", "JavaScript", "Responsive UI"],
-    image:
-      "/images/projects/Myportfolio.png",
+    image: "/images/projects/Myportfolio.png",
     liveUrl: "https://myportfolio-sigma-ten-62.vercel.app/",
     githubUrl: "https://github.com/Kelajane/myportfolio.github.io.git",
     featured: true,
@@ -60,6 +61,14 @@ export const projects: Project[] = [
     category: "Web Development",
   },
   {
+    // title: "Finance Dashboard UI",
+    // description: "...",
+    // image: "...",
+    // liveUrl: "https://www.figma.com/...",
+    // githubUrl: null,
+    // technologies: ["Figma", "UI Design"],
+    // type: "design", // 👈 Add this
+
     id: "ui-design-exploration",
     title: "UI Design Exploration",
     description:
@@ -78,6 +87,7 @@ export const projects: Project[] = [
     githubUrl: "",
     featured: true,
     category: "UI/UX Design",
+    type: "design", 
   },
   {
     id: "brand-identity-direction",
@@ -86,11 +96,12 @@ export const projects: Project[] = [
       "A brand and visual identity concept designed to communicate professionalism, clarity, and momentum.",
     impact:
       "Shows how a consistent visual system can improve trust and recognition across digital touchpoints.",
-    technologies: ["Brand Design", "Figma"],
+    technologies: ["Brand Design", "Visual Identity", "Logo Design", "Typography"],
     image: "/images/projects/Design.png",
     liveUrl: "/images/projects/Design.png",
     githubUrl: "",
     featured: true,
     category: "Brand Design",
+    type: "design",
   },
 ];
