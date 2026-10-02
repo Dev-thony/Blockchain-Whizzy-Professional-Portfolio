@@ -42,7 +42,7 @@ export const personalInfo = {
   x: 'https://twitter.com/Blockchainwhizy',
   whatsapp: 'https://wa.me/2347015336065',
   telegram: 'https://t.me/blockchainwhizzy',
-  instagram: 'https://www.instagram.com/blockchainwhizzy/',
+  instagram: 'https://www.instagram.com/dev_tony01/',
 };
 
 export const navItems: NavItem[] = [
