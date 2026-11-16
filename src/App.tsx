@@ -32,14 +32,14 @@ function App() {
   return (
     <div
       id="top"
-      className="min-h-screen bg-[#090909] text-[#F5F5F5] antialiased"
+      className="bg-page text-page min-h-screen antialiased"
     >
       <>
         {loading && <LoadingScreen onFinish={() => setLoading(false)} />}
 
         <motion.div
           id="top"
-          className="min-h-screen bg-[#090909] text-[#F5F5F5] antialiased"
+          className="bg-page text-page min-h-screen antialiased"
           initial={{ opacity: 0 }}
           animate={{ opacity: loading ? 0 : 1 }}
           transition={{ duration: 0.8 }}
@@ -480,7 +480,7 @@ function App() {
                 <Reveal key={item.title} delay={index * 80}>
                   <article className="relative ml-10 py-20">
                     {/* Timeline Dot */}
-                    <div className="absolute -left-11.5 top-22 h-4 w-4 rounded-full border border-white bg-[#090909]" />
+                    <div className="absolute -left-11.5 top-22 h-4 w-4 rounded-full border border-white bg-page" />
 
                     {/* Period */}
                     <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-neutral-600">

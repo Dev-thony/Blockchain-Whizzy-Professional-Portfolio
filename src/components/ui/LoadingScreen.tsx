@@ -22,7 +22,7 @@ export function LoadingScreen({ onFinish }: Props) {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-999 flex items-center justify-center bg-[#090909]"
+          className="bg-page fixed inset-0 z-999 flex items-center justify-center"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7 }}
         >
